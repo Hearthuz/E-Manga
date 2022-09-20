@@ -18,23 +18,40 @@ function ProductShow({ className }) {
                 </div>
                 <div class="col-6 detailFrame">
                     <div class="row">
-                        <div class="col-3 frontTag">Author</div>
-                        <div class="col-3 backTag">Person</div>
+                        <div class="col-3 frontTag p-4">Author</div>
+                        <div class="col-3 backTag p-4">Person</div>
                     </div>
                     <div class="row">
-                        <div class="col-3 frontTag">Publisher</div>
-                        <div class="col-3 backTag">Name</div>
+                        <div class="col-3 frontTag p-4">Publisher</div>
+                        <div class="col-3 backTag p-4">Name</div>
                     </div>
                     <div class="row">
-                        <div class="col-3 frontTag">BookType</div>
-                        <div class="col-3 backTag">BookType</div>
+                        <div class="col-3 frontTag p-4">BookType</div>
+                        <div class="col-3 backTag p-4">BookType</div>
                     </div>
                     <div class="row">
-                        <div class="col-4 frontTag"><button class='tryIt'>Try it!</button></div>
-                        <div class="col-4 backTag"><button class='buyIt'>Buy it!</button></div>
-                        <div class="col-4 addFavBtn"><FiHeart /></div>
+                        <div class="col-3 myButton"><button class=' bg-warning rounded-pill'>Try it!</button></div>
+                        <div class="col-3 buyBtn"><button class='buyIt bg-success rounded-pill'>Buy it!</button></div>
+                        <div class="col-3 addFavBtn"><FiHeart /></div>
                     </div>
                 </div>
+            </div>
+            <div class="row p-4">
+                <div class="row bg-white synopsisBlock">
+                    <span>Synopsis</span>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center p-2">
+                <div class="col-2 bg-white manga_Tag">Tag</div>
+                <div class="col-2 bg-white manga_Tag">Tag</div>
+                <div class="col-2 bg-white manga_Tag">Tag</div>
+                <div class="col-2 bg-white manga_Tag">Tag</div>
+                <div class="col-2 bg-white manga_Tag">Tag</div>
+                <div class="col-2 bg-white manga_Tag">Tag</div>
+                <div class="col-2 bg-white manga_Tag">Tag</div>
+            </div>
+            <div class="row">
+                <div class="col-2"><img src="https://th-live-01.slatic.net/p/8598899196302d6d8bde1ee9e1f67208.jpg"/></div>
             </div>
         </div >
     )
@@ -58,4 +75,20 @@ export default styled(ProductShow)`
     .detailFrame{
         background-color: #ffffff;
     }
+    .synopsisBlock{
+        height : 10rem;
+    }
+    .frontTag{
+        font-size: 1.5rem;
+    }
+    .backTag{
+        font-size: 1.5rem;
+    }
+    .manga_Tag{
+        text-align : center;
+        margin: 0.5rem;
+        margin-bottom :1rem;
+        
+    }
+    
 `
