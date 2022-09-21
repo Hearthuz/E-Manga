@@ -11,28 +11,28 @@ function ProductShow({ className }) {
                 <div class="productName">Book Of Moon</div>
             </div>
             <div class="row p-4">
-                <div class="col-6 book_detail pr-4 justify-content-center">
+                <div class="col-6 book_detail pr-1 justify-content-center">
                     <div class="row">
                         <img class="book_cover" src='https://i.pinimg.com/550x/28/19/d1/2819d12523097ccea2e541d972437128.jpg' />
                     </div>
                 </div>
                 <div class="col-6 detailFrame">
                     <div class="row">
-                        <div class="col-3 frontTag p-4">Author</div>
-                        <div class="col-3 backTag p-4">Person</div>
+                        <div class="col-3 frontTag p-4 pr-6">Author</div>
+                        <div class="col-3 backTag p-4 pr-6">Person</div>
                     </div>
                     <div class="row">
-                        <div class="col-3 frontTag p-4">Publisher</div>
-                        <div class="col-3 backTag p-4">Name</div>
+                        <div class="col-3 frontTag p-4 pr-6">Publisher</div>
+                        <div class="col-3 backTag p-4 pr-6">Name</div>
                     </div>
                     <div class="row">
-                        <div class="col-3 frontTag p-4">BookType</div>
-                        <div class="col-3 backTag p-4">BookType</div>
+                        <div class="col-3 frontTag p-4 pr-6">BookType</div>
+                        <div class="col-3 backTag p-4 pr-6">BookType</div>
                     </div>
-                    <div class="row">
-                        <div class="col-3 myButton"><button class=' bg-warning rounded-pill'>Try it!</button></div>
-                        <div class="col-3 buyBtn"><button class='buyIt bg-success rounded-pill'>Buy it!</button></div>
-                        <div class="col-3 addFavBtn"><FiHeart /></div>
+                    <div class="row d-flex justify-content-center p-2">
+                        <div class="col-3 tryBtn" role="button">Try it!</div>
+                        <div class="col-3 buyBtn" role="button">Buy it!</div>
+                        <div class="col-3 addFavBtn" role="button"><FiHeart /></div>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,12 @@ function ProductShow({ className }) {
                 <div class="col-2 bg-white manga_Tag">Tag</div>
             </div>
             <div class="row">
-                <div class="col-2"><img src="https://th-live-01.slatic.net/p/8598899196302d6d8bde1ee9e1f67208.jpg"/></div>
+                <div class="col-2"><img class="addBook" src="https://images-na.ssl-images-amazon.com/images/I/51FAgOL-1bL.jpg"/></div>
+                <div class="col-2"><img class="addBook" src="https://images-na.ssl-images-amazon.com/images/I/81ctOuD4lIL.jpg"/></div>
+                <div class="col-2"><img class="addBook" src="https://images-na.ssl-images-amazon.com/images/I/815IWVldmFL.jpg"/></div>
+                <div class="col-2"><img class="addBook" src="https://images-na.ssl-images-amazon.com/images/I/91Os+dWdLdL.jpg"/></div>
+                <div class="col-2"><img class="addBook" src="https://images-na.ssl-images-amazon.com/images/I/51QGDuqbn8L._SX331_BO1,204,203,200_.jpg"/></div>
+                <div class="col-2"><img class="addBook" src="https://images-na.ssl-images-amazon.com/images/I/51rXmu74skL._SX331_BO1,204,203,200_.jpg"/></div>
             </div>
         </div >
     )
@@ -87,8 +92,10 @@ export default styled(ProductShow)`
     .manga_Tag{
         text-align : center;
         margin: 0.5rem;
-        margin-bottom :1rem;
-        
+        margin-bottom :1rem;  
     }
-    
+    .addBook{
+        width : 9rem;
+        padding: 0.5rem;
+    }
 `
