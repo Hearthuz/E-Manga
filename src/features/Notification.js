@@ -36,16 +36,64 @@ function Home({ className }) {
             </div>
             <div class="notification">
                 <h1>Notification</h1>
-                <div class="flex-color">
-                    <div class="col-md-2">
-                        <div class="manga-box position-relative ">
-                            <div class="flex-container">
-                                <img src="https://img.freepik.com/free-vector/smiling-girl-anime-character-poster_603843-3026.jpg?w=360" class="card-img-top" alt="..." />
+                <div class="flex-color  rounded-4 shadow m-2">
+                    <div class="manga-box position-relative">
+                        <div class="container-fluid p-0 m-0">
+                            <div class="row p-4 ">
+                                <div class="col-3  ">
+                                    <img src="https://img.freepik.com/free-vector/smiling-girl-anime-character-poster_603843-3026.jpg?w=360" class="card-img-top" alt="..." />
+                                </div>
+                                <div class="col-9 ">
+                                    <div class="d-flex m-4">
+                                        <div class="  fs-4 me-5">Author</div>
+                                        <div class=" backTag fs-4 ">Person</div>
+                                    </div>
+                                    <div class="d-flex m-4">
+                                        <div class="  fs-4 me-4">Publisher</div>
+                                        <div class=" backTag fs-4 ">Name</div>
+                                    </div>
+                                    <div class="d-flex m-4">
+                                        <div class="  fs-4 me-4">BookType</div>
+                                        <div class=" backTag fs-4 ">NameType</div>
+                                    </div>
+                                    <div class="d-flex m-4">
+                                        <div class=" newTag me-4">_________New Book!!_________</div>
+                                    </div>
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
+
+                <div class="flex-color  rounded-4 shadow m-2">
+                    <div class="manga-box position-relative">
+                        <div class="container-fluid p-0 m-0">
+                            <div class="row p-4 ">
+                                <div class="col-3  ">
+                                    <img src="https://img.freepik.com/free-vector/smiling-girl-anime-character-poster_603843-3026.jpg?w=360" class="card-img-top" alt="..." />
+                                </div>
+                                <div class="col-9 ">
+                                    <div class="d-flex m-4">
+                                        <div class="  fs-4 me-5">Author</div>
+                                        <div class=" backTag fs-4 ">Person</div>
+                                    </div>
+                                    <div class="d-flex m-4">
+                                        <div class="  fs-4 me-4">Publisher</div>
+                                        <div class=" backTag fs-4 ">Name</div>
+                                    </div>
+                                    <div class="d-flex m-4">
+                                        <div class="  fs-4 me-4">BookType</div>
+                                        <div class=" backTag fs-4 ">NameType</div>
+                                    </div>
+                                    <div class="d-flex m-4">
+                                        <div class=" newTag me-4">_________New Book!!_________</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -83,7 +131,7 @@ export default styled(Home)`
         padding: 0.5rem;
     }
     .manga-box{
-        padding-bottom: 1rem;
+        
     }
     .favorite-button{
         margin-bottom: 0.5rem;
@@ -97,5 +145,14 @@ export default styled(Home)`
     height: 20rem;
     align-items: center;
     }
+    .detailFrame{
+        background-color: #d9d9d9;
+    }
+    .newTag{
+    font-size: 50px;
+    color: #8758FF;
+    }
+    .backTag{
+        color: #8758FF;
     
 `
