@@ -8,10 +8,11 @@ function Container({ children, className }) {
 }
 
 export default styled(Container)`
-    max-width:1280px;
+    max-width:1440px;
     height:100%;
     margin: 0 auto;
-    padding: 4rem;
+    padding-top: 4rem;
     display: flex;
     justify-content: center;
+    align-items: center;
 `

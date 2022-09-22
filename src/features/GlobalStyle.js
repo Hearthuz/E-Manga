@@ -4,9 +4,20 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+  html,body{
+    height: 100%
+  }
   body {
     margin: 0;
     background-image: linear-gradient(to bottom, #c31432, #a10043, #780049, #4d0845, #240b36);
+    background-position: center 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
   }
   a {
     color: inherit;
