@@ -45,6 +45,9 @@ function Home({ className }) {
                                 </div>
                                 <div class="col-9 ">
                                     <div class="d-flex m-4">
+                                        <div class=" newTag me-4">_____________New Book!!______________</div>
+                                    </div>
+                                    <div class="d-flex m-4">
                                         <div class="  fs-4 me-5">Author</div>
                                         <div class=" backTag fs-4 ">Person</div>
                                     </div>
@@ -56,15 +59,12 @@ function Home({ className }) {
                                         <div class="  fs-4 me-4">BookType</div>
                                         <div class=" backTag fs-4 ">NameType</div>
                                     </div>
-                                    <div class="d-flex m-4">
-                                        <div class=" newTag me-4">_________New Book!!_________</div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="flex-color  rounded-4 shadow m-2">
                     <div class="manga-box position-relative">
                         <div class="container-fluid p-0 m-0">
@@ -74,6 +74,9 @@ function Home({ className }) {
                                 </div>
                                 <div class="col-9 ">
                                     <div class="d-flex m-4">
+                                        <div class=" newTag me-4">_____________New Book!!______________</div>
+                                    </div>
+                                    <div class="d-flex m-4">
                                         <div class="  fs-4 me-5">Author</div>
                                         <div class=" backTag fs-4 ">Person</div>
                                     </div>
@@ -85,14 +88,13 @@ function Home({ className }) {
                                         <div class="  fs-4 me-4">BookType</div>
                                         <div class=" backTag fs-4 ">NameType</div>
                                     </div>
-                                    <div class="d-flex m-4">
-                                        <div class=" newTag me-4">_________New Book!!_________</div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
             </div>
 
@@ -149,10 +151,11 @@ export default styled(Home)`
         background-color: #d9d9d9;
     }
     .newTag{
-    font-size: 50px;
+    font-size: 40px;
     color: #8758FF;
     }
     .backTag{
         color: #8758FF;
+    
     
 `
