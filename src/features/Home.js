@@ -75,7 +75,7 @@ export default styled(Home)`
         padding-top: 4rem;
     }
     .carousel-item{
-        max-height: 25rem;
+        max-height: 32rem;
     }
     .topManga-container{
         display: flex;

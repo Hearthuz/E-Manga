@@ -12,11 +12,11 @@ function Register({ className }) {
                     <div>
                         <form class="registerForm">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-xl-6">
                                     <span>First Name</span>
                                     <input type="text" class="fname" placeholder='First Name' required></input>
                                 </div>
-                                <div class="col">
+                                <div class="col-xl-6">
                                     <span>Last Name</span>
                                     <input type="text" class="lname" placeholder='Last Name' required></input>
                                 </div>

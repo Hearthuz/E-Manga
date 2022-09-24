@@ -21,8 +21,11 @@ function Navbar({ className }) {
               <li class="nav-item">
                 <Link to="/manga">Manga</Link>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item">
                 <Link to="/favorite">Favorite</Link>
+              </li>
+              <li class="nav-item">
+                <Link to="/notification">Notification</Link>
               </li>
             </ul>
             <div class="d-flex">
