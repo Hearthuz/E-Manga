@@ -7,7 +7,7 @@ function Cart({className}){
     return(
         <div className={className}>
             <h1 class="row header py-5 fw-bolder d-flex justify-content-center">Cart Lists</h1>
-            <div class="row dataBlock py-10 px-1 d-flex justify-content-center bg-white">
+            <div class="row dataBlock py-10 px-1 d-flex justify-content-center bg-white rounded">
                 <div class="row py-2 cart-Item border border-start-0 border-end-0 border-dark">
                     <div class="col-1"><div class=" checkBoxCol d-flex align-items-center"><div class="d-flex"><input type={'checkbox'}></input></div></div></div>
                     <div class="col-2 px-0"><img class="bookCover" src="https://m.media-amazon.com/images/I/51QWSFImgvL.jpg"/></div>
@@ -107,6 +107,18 @@ function Cart({className}){
             <div class="row">
                 <div class="d-flex py-2 px-4"><input type={'checkbox'}></input><span class="px-2 selectAll">Select All</span></div>
             </div>
+            <div class="row">
+                <div class="paymentBlock bg-white p-4">
+                    <div class="row">
+                        <span class="totalPay d-flex justify-content-center fw-bold">Total Payment : ฿</span>
+                    </div>
+                    <div class="row d-flex justify-content-center align-item-center mt-4">
+                        <div class="btnContainer">
+                            <div class="payBtn d-flex p-2 justify-content-center border border-success py-2" role={'button'}>Payment Method</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
@@ -143,5 +155,18 @@ export default styled(Cart)`
     .selectAll{
         font-size :1.5rem;
         color : #eeeeee;
+    }
+    .paymentBlock{
+        margin-top : 8rem;
+        border-radius: 1rem;
+    }
+    .btnContainer{
+        width: 50%;
+    }
+    .payBtn{
+        background-color: #8758FF;
+        color: #FFFFFF;
+        font-weight : bold;
+        border-radius: 3rem;
     }
 `
