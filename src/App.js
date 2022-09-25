@@ -10,6 +10,7 @@ import Register from './features/Register';
 import ProductShow from './features/ProductShow';
 import Notification from './features/Notification';
 import Cart from './features/Cart';
+import BookArchive from './features/BookArchive';
 
 const App = () => {
     return (
@@ -24,6 +25,7 @@ const App = () => {
                 <Route path="/productShow" element={<ProductShow />} />
                 <Route path="/notification" element={<Notification />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/BookArchive" element={<BookArchive />} />
             </Routes>
         </>
     )
