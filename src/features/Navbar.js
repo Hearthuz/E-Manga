@@ -14,12 +14,9 @@ function Navbar({ className }) {
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="d-flex navbar-nav fw-bold me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <Link to="/">Home</Link>
-              </li>
-              <li class="nav-item">
-                <Link to="/manga">Manga</Link>
+                <Link to="/" class="home">Home</Link>
               </li>
               <li class="nav-item">
                 <Link to="/favorite">Favorite</Link>
@@ -28,10 +25,10 @@ function Navbar({ className }) {
                 <Link to="/notification">Notification</Link>
               </li>
             </ul>
-            <div class="d-flex">
+            <div class="fw-bold">
               <Link to="/cart"><i class="bi bi-bag"></i> Cart</Link>
             </div>
-            <div class="user mb-2 mb-lg-0">
+            <div class="user mb-2 mb-lg-0 fw-bold">
               <Link to="/login">Login</Link>
               <Link to="/Register"> / Register</Link>
             </div>
@@ -63,11 +60,12 @@ export default styled(Navbar)`
     margin-right: 2rem;
   }
   a{
-    padding: 0 2rem 0 2rem;
+    margin: 0 2rem 0 2rem;
     color: #AB987A;
   }
   a:hover{
     color: #FF3B3F;
+    border-bottom: 0.25rem solid #ff0a54;
   }
   .logoPic{
     padding-right: 1rem;
@@ -79,7 +77,7 @@ export default styled(Navbar)`
     margin-right: 2rem;
   }
   .user a{
-    padding: 0;
+    margin: 0;
   }
   .brand {
     font-weight: bold;
