@@ -12,13 +12,13 @@ function Manga({ item }) {
                     <div class="image_overlay image_overlay-blur rounded">
                         <div class="card-button row">
                             <div class="favorite"><button type="button" class="favorite-button rounded"><i class="bi bi-heart"></i></button></div>
-                            <Link to="/productShow" class="mangaName">{item.name}</Link>
+                            <Link to={{ pathname: `/productShow/${item.id}` }} class="mangaName">{item.name}</Link>
                             <div class="cart"><button type="button" class="cart-button rounded"><i class="bi bi bi-bag-plus"></i></button></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

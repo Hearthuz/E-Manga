@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -13,12 +13,15 @@ function Home({ className }) {
     const slideImages3 = require('../assets/slide3.jpg');
     const [manga, setManga] = useState([]);
 
-    // async function getManga() {
-    //     const manga = await axios.get(
-    //         'http://localhost:8080/manga/'
-    //     );
-    //     setManga(manga.data);
-    // }
+    useEffect(() => {
+        async function getManga() {
+            const manga = await axios.get(
+                'http://localhost:8080/manga/'
+            );
+            setManga(manga.data);
+        }
+        getManga();
+    }, []);
 
     // getManga();
 
