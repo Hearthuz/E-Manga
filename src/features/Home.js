@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
 
 function Home({ className }) {
     const slideImages1 = require('../assets/slide1.jpg');
@@ -61,7 +62,7 @@ function Home({ className }) {
                     </div>
                 </div>
             </div >
-
+            <Footer />
         </div >
     )
 }
