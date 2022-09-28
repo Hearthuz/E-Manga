@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 function ProductShow({ className }) {
     const [manga, setManga] = useState([]);
     const { id } = useParams();
+    const [sameSeries, setSameSeries] = useState([]);
 
     console.log(id);
     useEffect(() => {
@@ -22,7 +23,17 @@ function ProductShow({ className }) {
         getManga();
     }, []);
 
+    const getSameSeries = (item) => {
+        axios.get(
+            `http://localhost:8080/manga?seriesName${item.seriesName}`
+        ).then(res => {
+            setSameSeries(res.data);
+            console.log(res.data);
+        })
+    }
+
     console.log(manga);
+    console.log(sameSeries);
     return (
         <div className={className}>
             <Navbar />
@@ -106,12 +117,7 @@ function ProductShow({ className }) {
                         <div class="col-md-2 col-4 bg-white manga_Tag rounded-pill">Tag</div>
                     </div>
                     <div class="row d-flex justify-content-center p-2">
-                        <div class="col-md-2 col-4"><img class="addBook" src="https://images-na.ssl-images-amazon.com/images/I/51FAgOL-1bL.jpg" /></div>
-                        <div class="col-md-2 col-4"><img class="addBook" src="https://images-na.ssl-images-amazon.com/images/I/81ctOuD4lIL.jpg" /></div>
-                        <div class="col-md-2 col-4"><img class="addBook" src="https://images-na.ssl-images-amazon.com/images/I/815IWVldmFL.jpg" /></div>
-                        <div class="col-md-2 col-4"><img class="addBook" src="https://images-na.ssl-images-amazon.com/images/I/91Os+dWdLdL.jpg" /></div>
-                        <div class="col-md-2 col-4"><img class="addBook" src="https://images-na.ssl-images-amazon.com/images/I/51QGDuqbn8L._SX331_BO1,204,203,200_.jpg" /></div>
-                        <div class="col-md-2 col-4"><img class="addBook" src="https://images-na.ssl-images-amazon.com/images/I/51rXmu74skL._SX331_BO1,204,203,200_.jpg" /></div>
+
                     </div>
                 </div>
             </div>
