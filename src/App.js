@@ -9,6 +9,8 @@ import Register from './features/Register';
 import ProductShow from './features/ProductShow';
 import Notification from './features/Notification';
 import Cart from './features/Cart';
+import Addbook from './features/AddBook';
+import Editbook from './features/EditBook';
 
 const App = () => {
     return (
@@ -22,6 +24,8 @@ const App = () => {
                 <Route path="/productShow/:id" element={<ProductShow />} />
                 <Route path="/notification" element={<Notification />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path='/addbook' element={<Addbook />} />
+                <Route path='/editbook' element={<Editbook />} />
             </Routes>
         </>
     )
