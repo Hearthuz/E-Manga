@@ -3,16 +3,29 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { NavItem } from 'react-bootstrap';
 
 function EditBook({ className }) {
     const [data, setData] = useState();
     const { id } = useParams();
+    const [manga, setManga] = useState([]);
+    
     const handleChange = (e) => {
         setData(e.target.value[0]);
     }
+    useEffect(() => {
+        async function getManga() {
+            const manga = await axios.get(
+                `http://localhost:8080/manga/${id}`
+            );
+            setManga(manga.data);
+        }
+        getManga();
+    }, []);
     const SubmitHandler = (e) => {
         e.preventDefault();
         console.log(data);
+        
         axios.put(`http://localhost:8080/manga/${id}`, {
             name: e.target.title.value,
             author: e.target.author.value,
@@ -51,61 +64,61 @@ function EditBook({ className }) {
                                             <div class="  fs-4 me-5">Book Name</div>
                                         </div>
                                         <div class="d-flex m-4 ">
-                                            <input type="text" class=" container-fluid  fs-5 me-4" placeholder='Book Name' id='title' required></input>
+                                            <input type="text" class=" container-fluid  fs-5 me-4" placeholder={manga.name}  id='title' required></input>
                                         </div>
 
                                         <div class="d-flex m-4">
                                             <div class="  fs-5 me-4">Name Series</div>
                                         </div>
                                         <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Name Series' id='series' required></input>
+                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder={manga.seriesName} id='series' required></input>
                                         </div>
 
                                         <div class="d-flex m-4">
                                             <div class="  fs-5 me-4">Author</div>
                                         </div>
                                         <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Author Name' id='author' required></input>
+                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder={manga.author} id='author' required></input>
                                         </div>
 
                                         <div class="d-flex m-4">
                                             <div class="  fs-5 me-4">Published </div>
                                         </div>
                                         <div class="d-flex m-4">
-                                            <input type="date" class="container-fluid  fs-5 me-4" placeholder='Published' id='published' required></input>
+                                            <input type="date" class="container-fluid  fs-5 me-4" placeholder={manga.published} id='published' required></input>
                                         </div>
 
                                         <div class="d-flex m-4">
                                             <div class="  fs-5 me-5">Publisher</div>
                                         </div>
                                         <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Publisher Name' id='publisher' required></input>
+                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder={manga.publisher} id='publisher' required></input>
                                         </div>
 
                                         <div class="d-flex m-4">
                                             <div class="  fs-5 me-5">Price</div>
                                         </div>
                                         <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Price' id='price' required></input>
+                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder={manga.price} id='price' required></input>
                                         </div>
                                         <div class="d-flex m-4">
                                             <div class="  fs-5 me-5">Pages</div>
                                         </div>
                                         <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Pages' id='page' required></input>
+                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder={manga.page} id='page' required></input>
                                         </div>
                                         <div class="d-flex m-4">
                                             <div class="  fs-5 me-5">ImagesURL</div>
                                         </div>
                                         <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Link Image' id='imgURL' required></input>
+                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder={manga.imageURL} id='imgURL' required></input>
                                         </div>
 
                                         <div class="d-flex m-4">
                                             <div class="  fs-5 me-5">Synopsis</div>
                                         </div>
                                         <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Synopsis' id='synopsis' required></input>
+                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder={manga.synopsis} id='synopsis' required></input>
                                         </div>
 
 

@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import axios from 'axios';
 
 function ArchiveCard({ item }) {
     const [show, setShow] = useState(false);
@@ -11,7 +12,11 @@ function ArchiveCard({ item }) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const delFunc = () => {
-        
+        axios.delete(`http://localhost:8080/manga/${item.id}`).then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     return (
