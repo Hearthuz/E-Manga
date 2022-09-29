@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 function EditBook({ className }) {
     const [data, setData] = useState();
-
+    const { id } = useParams();
     const handleChange = (e) => {
         setData(e.target.value[0]);
     }
     const SubmitHandler = (e) => {
         e.preventDefault();
         console.log(data);
-        axios.put('http://localhost:8080/manga/ ', {
+        axios.put(`http://localhost:8080/manga/${id}`, {
             name: e.target.title.value,
             author: e.target.author.value,
             seriesName: e.target.series.value,
@@ -71,7 +72,7 @@ function EditBook({ className }) {
                                             <div class="  fs-5 me-4">Published </div>
                                         </div>
                                         <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Published' id='published' required></input>
+                                            <input type="date" class="container-fluid  fs-5 me-4" placeholder='Published' id='published' required></input>
                                         </div>
 
                                         <div class="d-flex m-4">
