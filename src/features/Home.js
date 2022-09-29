@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
 import Navbar from './Navbar';
+import { Link } from 'react-router-dom';
+import Footer from './Footer';
 import Manga from './Manga';
 
 function Home({ className }) {
@@ -43,6 +44,11 @@ function Home({ className }) {
             <Navbar />
             <div class="homePage">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src={slideImages1} class="d-block w-100" alt="..." />
@@ -86,8 +92,9 @@ function Home({ className }) {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+            <Footer />
+        </div >
     )
 }
 
