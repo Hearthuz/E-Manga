@@ -1,9 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect, Redirect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { Link } from 'react-router-dom'
 
 function Login({ className }) {
     const logo = require('../assets/logo.png');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [userData, setUserData] = useState([]);
+    const [userID, setUserID] = useState([]);
+    const [currentUser, setCurrentUser] = useState(false);
+
+    useEffect(() => {
+        async function getUser() {
+            const user = await axios.get(
+                'http://localhost:8080/users/'
+            );
+            setUserData(user.data);
+        }
+        getUser();
+    }, []);
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        const user = userData.find(user => user.username === username && user.password === password);
+        setUserID(user);
+        setCurrentUser(true);
+    }
+
+    if (currentUser) {
+        <Redirect to="/"></Redirect>
+    }
+
     return (
         <div className={className}>
             <div class="login-container">
@@ -11,14 +39,14 @@ function Login({ className }) {
                     <div class="loginLogo row">
                         <img src={logo} alt="E-Manga" class="logo rounded"></img>
                         <div>
-                            <form class="loginForm">
+                            <form class="loginForm" onSubmit={handleSubmit}>
                                 <span>User ID</span>
-                                <input type="text" class="username" placeholder='username' required></input>
+                                <input type="text" class="username" id="username" placeholder='username' required onChange={e => setUsername(e.target.value)}></input>
                                 <span>Password</span>
-                                <input type="password" class="password" placeholder='password' required></input>
+                                <input type="password" class="password" id="password" placeholder='password' required onChange={e => setPassword(e.target.value)}></input>
                                 <div class="col nevigateButton">
-                                    <button class="loginButton">Login</button>
-                                    <button class="registerButton">Register</button>
+                                    <button class="loginButton" type='submit'>Login</button>
+                                    <Link to="/register"><button class="registerButton">Register</button></Link>
                                 </div>
                             </form>
                         </div>
