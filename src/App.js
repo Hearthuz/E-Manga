@@ -10,6 +10,8 @@ import ProductShow from './features/ProductShow';
 import Notification from './features/Notification';
 import Cart from './features/Cart';
 import BookArchive from './features/BookArchive';
+import AddBook from './features/AddBook';
+import EditBook from './features/EditBook';
 
 const App = () => {
     return (
@@ -24,6 +26,8 @@ const App = () => {
                 <Route path="/notification" element={<Notification />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/BookArchive" element={<BookArchive />} />
+                <Route path="/addBook" element={<AddBook />} />
+                <Route path="/editBook" element={<EditBook />} />
             </Routes>
         </>
     )
