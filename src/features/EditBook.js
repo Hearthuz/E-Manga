@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import axios from 'axios';
 
-function Addbook({ className }) {
+function EditBook({ className }) {
     const [data, setData] = useState();
 
     const handleChange = (e) => {
@@ -12,7 +12,7 @@ function Addbook({ className }) {
     const SubmitHandler = (e) => {
         e.preventDefault();
         console.log(data);
-        axios.put('http://localhost:8080/manga/', {
+        axios.put('http://localhost:8080/manga/ ', {
             name: e.target.title.value,
             author: e.target.author.value,
             seriesName: e.target.series.value,
@@ -32,7 +32,7 @@ function Addbook({ className }) {
         <div className={className}>
             <form onSubmit={SubmitHandler}>
                 <div class="notification">
-                    <h1 class="row header py-5 fw-bolder d-flex justify-content-center">Add New Book</h1>
+                    <h1 class="row header py-5 fw-bolder d-flex justify-content-center">Edit Book Data</h1>
 
                     <div class="flex-color  rounded-4 shadow m-2">
                         <div class="manga-box position-relative">
@@ -147,11 +147,11 @@ function Addbook({ className }) {
     )
 }
 
-Addbook.propTypes = {
+EditBook.propTypes = {
     className: PropTypes.string.isRequired
 };
 
-export default styled(Addbook)`
+export default styled(EditBook)`
 .carousel-item{
     height: 32rem;
 }
