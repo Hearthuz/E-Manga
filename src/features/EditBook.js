@@ -9,7 +9,7 @@ function EditBook({ className }) {
     const [data, setData] = useState();
     const { id } = useParams();
     const [manga, setManga] = useState([]);
-    
+
     const handleChange = (e) => {
         setData(e.target.value[0]);
     }
@@ -25,7 +25,7 @@ function EditBook({ className }) {
     const SubmitHandler = (e) => {
         e.preventDefault();
         console.log(data);
-        
+
         axios.put(`http://localhost:8080/manga/${id}`, {
             name: e.target.title.value,
             author: e.target.author.value,
@@ -64,7 +64,7 @@ function EditBook({ className }) {
                                             <div class="  fs-4 me-5">Book Name</div>
                                         </div>
                                         <div class="d-flex m-4 ">
-                                            <input type="text" class=" container-fluid  fs-5 me-4" placeholder={manga.name}  id='title' required></input>
+                                            <input type="text" class=" container-fluid  fs-5 me-4" placeholder={manga.name} id='title' required></input>
                                         </div>
 
                                         <div class="d-flex m-4">

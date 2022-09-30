@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import NavbarAdmin from './NavbarAdmin';
@@ -40,12 +40,14 @@ function BookArchive({ className }) {
             <div class="bookArchive-container bg-white w-100 h-100">
                 <div class="row w-100 h-100 py-5">
                     <div class="d-flex justify-content-center alignt-item-center">
-                        <div class="d-flex py-5 w-50">
-                            <input class="searchBox rounded" type="search" placeholder="Input Book Name Here" aria-label="Search" onKeyPress={handleChange}></input>
-                            <button type="button" class="btn btn-outline-success mx-2" onClick={handleChange}>Search</button>
+                        <div class="searchContainer container-fluid d-flex justify-content-center">
+                            <form class="d-flex searchBar rounded-pill" role="search">
+                                <i class="bi bi-search searchIcon"></i>
+                                <input type="search" class="searchInput rounded-pill " placeholder="Enter manga name" aria-label="Search" onKeyPress={handleChange} />
+                            </form>
                         </div>
                     </div>
-                    <div class="row py-3 resultBlock">
+                    <div class="row py-3 mt-4 mb-2 resultBlock">
                         {
                             searchResults.length > 0 ?
                                 (searchResults.map((result) => (
@@ -56,7 +58,7 @@ function BookArchive({ className }) {
                                         <ArchiveCard key={mangaplus.id} item={mangaplus} />
                                     ))
                                 )
-                            }
+                        }
                     </div>
                 </div>
             </div>
@@ -77,6 +79,7 @@ export default styled(BookArchive)`
 input {
     width : 100%;
 }
+
 .image_overlay{
     width: 100%;
     height: 100%;
@@ -143,5 +146,36 @@ input {
     height: 50%;
     width: auto;
     background: #ff6961;    
+}
+.searchContainer{
+    position: absolute;
+    z-index: 1;
+    margin-top: -25px;
+}
+.searchIcon{
+    padding: 10px;
+    margin-top: -1px;
+}
+.searchBar{
+    background-color: #fffff;
+    width: 75%;
+    height: 50px;
+    padding: 5px;
+}
+.searchInput{
+    text-align: center;
+    border-radius: 50px 0 0 50px;   
+}
+.searchInput::placeholder{
+    color: #ffffff;
+}
+.btn-search{
+    color: #ffffff;
+    background-color: #f7797d;
+    border-radius: 0 50px 50px 0;
+}
+.btn-search:hover{
+    color: #bdc3c7;
+    background-color: #f7797d;
 }
 `
