@@ -19,7 +19,7 @@ function CartAccord({ item }) {
 
     return (
         <Accordion.Item eventKey={item.id}>
-            <Accordion.Header><div class="col-2"><input type="checkbox"></input></div><div class="col-10 accordionName">BookNameeeeeeeeeeee</div></Accordion.Header>
+            <Accordion.Header><div class="col-2"><input type="checkbox"></input></div><div class="col-10 accordionName">{item.name}</div></Accordion.Header>
             <Accordion.Body>
                 <div class="col-12">{item.name}</div>
                 <div class="col-12 col-sm-6"><img src={item.imageURL} class="book-cover img-fluid py-1"></img></div>
