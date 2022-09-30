@@ -12,6 +12,7 @@ import Cart from './features/Cart';
 import BookArchive from './features/BookArchive';
 import AddBook from './features/AddBook';
 import useToken from './features/useToken';
+import Editbook from './features/EditBook';
 
 const App = () => {
     const { token, setToken } = useToken();
@@ -41,6 +42,7 @@ const App = () => {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/bookArchive" element={<BookArchive />} />
                 <Route path="/addBook" element={<AddBook />} />
+                <Route path="/editBook/:id" element={<Editbook />} />
             </Routes>
         </>
     )
