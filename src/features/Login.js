@@ -64,7 +64,6 @@ function Login({ className, setToken }) {
                                 <input type="password" class="password" id="password" placeholder='password' required onChange={e => setPassword(e.target.value)}></input>
                                 <div class="col nevigateButton">
                                     <button class="loginButton" type='submit'>Login</button>
-                                    <Link to="/register"><button class="registerButton">Register</button></Link>
                                 </div>
                             </form>
                         </div>
