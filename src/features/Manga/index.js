@@ -1,9 +1,84 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import axios from 'axios';
+import Favorite from '../Favorite';
 
 function Manga({ item }) {
+    const [cart, setCart] = useState([]);
+    const [favorite, setFavorite] = useState([]);
+    const userId = localStorage.getItem("token");
+    useEffect(() => {
+        async function getCart() {
+            const manga = await axios.get(
+                `http://localhost:8080/users/${userId[7]}`
+            );
+            setCart(manga.data.cart);
+        }
+        getCart();
+
+        async function getFavoriteManga() {
+            const manga = await axios.get(
+                `http://localhost:8080/users/${userId[7]}`
+            );
+            setFavorite(manga.data.favoriteBooks);
+        }
+        getFavoriteManga();
+    }, []);
+
+    function checkData(data, id) {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].id === id) {
+                return false;
+            }
+        }
+        return true;
+    }
+    function addFavorites(e) {
+        e.preventDefault();
+        const check = checkData(favorite, item.id);
+        if (check === true || check === undefined) {
+            axios.post(`http://localhost:8080/users/${userId[7]}/favorite`, {
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                imageURL: item.imageURL
+            }).then((response) => {
+                alert("Add Success");
+                window.location.reload();
+                console.log(response);
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+        else {
+            alert("Alerady Add");
+        }
+    }
+
+    function addCart(e) {
+        e.preventDefault();
+        const check = checkData(cart, item.id);
+        if (check === true || check === undefined) {
+            axios.post(`http://localhost:8080/users/${userId[7]}/cart`, {
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                imageURL: item.imageURL
+            }).then((response) => {
+                alert("Add Success");
+                window.location.reload();
+                console.log(response);
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+        else {
+            alert("Alerady Add");
+        }
+    }
+
     return (
         <div class="col-xl-2 col-md-3 col-sm-4 col-6">
             <div class="manga-box position-relative">
@@ -11,11 +86,11 @@ function Manga({ item }) {
                     <img id="manga_url" src={item.imageURL} class="card-img-top rounded" alt="..." />
                     <div class="image_overlay image_overlay-blur rounded">
                         <div class="card-button row">
-                            <div class="favorite"><button type="button" class="favorite-button rounded"><i class="bi bi-heart"></i></button></div>
+                            <div class="favorite"><button type="button" class="favorite-button rounded" onClick={addFavorites}><i class="bi bi-heart"></i></button></div>
                             <Link to={{
                                 pathname: `/productShow/${item.id} `
                             }} class="mangaName">{item.name}</Link>
-                            < div class="cart"><button type="button" class="cart-button rounded"><i class="bi bi bi-bag-plus"></i></button></div>
+                            < div class="cart"><button type="button" class="cart-button rounded" onClick={addCart}><i class="bi bi bi-bag-plus"></i></button></div>
                         </div>
                     </div>
                 </div>
@@ -23,7 +98,6 @@ function Manga({ item }) {
         </div>
     )
 }
-
 Manga.propTypes = {
     item: PropTypes.object.isRequired
 };

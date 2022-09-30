@@ -5,7 +5,6 @@ import axios from 'axios';
 
 function Register({ className }) {
     const logo = require('../assets/logo.png');
-    const [postUser, setPostUser] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -23,11 +22,7 @@ function Register({ className }) {
             permissionLevel: 1,
             series: [],
             buyedBooks: [],
-            favoriteBooks: [
-                {
-                    bookId: 0
-                }
-            ]
+            favoriteBooks: []
         })
             .catch((err) => {
                 console.log(err)
@@ -76,11 +71,12 @@ export default styled(Register)`
         justify-content: center;
         align-items: center;
         width: 100%;
+        height: 100vh;
     }
     .registerPage{
         display: flex;
         justify-content: center;
-        width: 35%; 
+        width: 40%; 
     }
     .logo{
         margin: 1rem;

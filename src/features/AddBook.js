@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import axios from 'axios';
+import NavbarAdmin from './NavbarAdmin';
+import Manga from './Manga';
 
 function Addbook({ className }) {
     const [data, setData] = useState();
@@ -9,6 +11,7 @@ function Addbook({ className }) {
     const handleChange = (e) => {
         setData(e.target.value[0]);
     }
+
     const SubmitHandler = (e) => {
         e.preventDefault();
         console.log(data);
@@ -28,120 +31,120 @@ function Addbook({ className }) {
             console.log(error);
         });
     }
+
     return (
         <div className={className}>
-            <form onSubmit={SubmitHandler}>
-                <div class="notification">
-                    <h1 class="row header py-5 fw-bolder d-flex justify-content-center">Add New Book</h1>
+            <NavbarAdmin />
+            <div className="page-container">
+                <form onSubmit={SubmitHandler}>
+                    <div class="notification">
+                        <h1 class="row header py-5 fw-bolder d-flex justify-content-center">Add New Book</h1>
+                        <div class="flex-color  rounded-4 shadow m-2">
+                            <div class="manga-box position-relative">
+                                <div class="container-fluid p-0 m-0">
+                                    <div class="row p-4 ">
+                                        <div class="d-flex m-4">
+                                            <div class="container-fluid  fs-5 me-4 border-bottom border-3 border-dark pb-2"></div>
+                                        </div>
+                                        <div class="col-3  ">
+                                            <img src="https://findicons.com/files/icons/2799/flat_icons/128/book_add.png" class="card-img-top" alt="..." />
+                                        </div>
+                                        <div class="col-9 ">
 
-                    <div class="flex-color  rounded-4 shadow m-2">
-                        <div class="manga-box position-relative">
-                            <div class="container-fluid p-0 m-0">
-                                <div class="row p-4 ">
-                                    <div class="d-flex m-4">
-                                        <div class="container-fluid  fs-5 me-4 border-bottom border-3 border-dark pb-2"></div>
+                                            <div class="d-flex m-4">
+                                                <div class="  fs-4 me-5">Book Name</div>
+                                            </div>
+                                            <div class="d-flex m-4 ">
+                                                <input type="text" class=" container-fluid  fs-5 me-4" placeholder='Book Name' id='title' required></input>
+                                            </div>
+
+                                            <div class="d-flex m-4">
+                                                <div class="  fs-5 me-4">Name Series</div>
+                                            </div>
+                                            <div class="d-flex m-4">
+                                                <input type="text" class="container-fluid  fs-5 me-4" placeholder='Name Series' id='series' required></input>
+                                            </div>
+
+                                            <div class="d-flex m-4">
+                                                <div class="  fs-5 me-4">Author</div>
+                                            </div>
+                                            <div class="d-flex m-4">
+                                                <input type="text" class="container-fluid  fs-5 me-4" placeholder='Author Name' id='author' required></input>
+                                            </div>
+
+                                            <div class="d-flex m-4">
+                                                <div class="  fs-5 me-4">Published </div>
+                                            </div>
+                                            <div class="d-flex m-4">
+                                                <input type="text" class="container-fluid  fs-5 me-4" placeholder='Published' id='published' required></input>
+                                            </div>
+
+                                            <div class="d-flex m-4">
+                                                <div class="  fs-5 me-5">Publisher</div>
+                                            </div>
+                                            <div class="d-flex m-4">
+                                                <input type="text" class="container-fluid  fs-5 me-4" placeholder='Publisher Name' id='publisher' required></input>
+                                            </div>
+
+                                            <div class="d-flex m-4">
+                                                <div class="  fs-5 me-5">Price</div>
+                                            </div>
+                                            <div class="d-flex m-4">
+                                                <input type="text" class="container-fluid  fs-5 me-4" placeholder='Price' id='price' required></input>
+                                            </div>
+                                            <div class="d-flex m-4">
+                                                <div class="  fs-5 me-5">Pages</div>
+                                            </div>
+                                            <div class="d-flex m-4">
+                                                <input type="text" class="container-fluid  fs-5 me-4" placeholder='Pages' id='page' required></input>
+                                            </div>
+                                            <div class="d-flex m-4">
+                                                <div class="  fs-5 me-5">ImagesURL</div>
+                                            </div>
+                                            <div class="d-flex m-4">
+                                                <input type="text" class="container-fluid  fs-5 me-4" placeholder='Link Image' id='imgURL' required></input>
+                                            </div>
+
+                                            <div class="d-flex m-4">
+                                                <div class="  fs-5 me-5">Synopsis</div>
+                                            </div>
+                                            <div class="d-flex m-4">
+                                                <input type="text" class="container-fluid  fs-5 me-4" placeholder='Synopsis' id='synopsis' required></input>
+                                            </div>
+
+                                            <div class="d-flex m-4">
+                                                <div class="  fs-5 me-5">Genre</div>
+                                            </div>
+                                            <div class="d-flex m-4">
+                                                <input type="text" class="container-fluid  fs-5 me-4" placeholder='Genre'></input>
+                                            </div>
+
+                                            <div class="d-flex m-4">
+
+                                            </div>
+
+                                            <div class="d-flex m-4">
+                                                <button type="submit" class="btn btn-success btn-sm me-1">Confirm</button>
+                                                <button type="button" class="btn btn-danger btn-sm me-1">Cancel</button>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex m-4">
+                                        </div>
+                                        <div class="col-1  ">
+                                        </div>
+
+
+                                        <div class="d-flex m-4">
+                                            <div class="container-fluid  fs-5 me-4 border-bottom border-3 border-dark pb-2"></div>
+                                        </div>
                                     </div>
-                                    <div class="col-3  ">
-                                        <img src="https://findicons.com/files/icons/2799/flat_icons/128/book_add.png" class="card-img-top" alt="..." />
-                                    </div>
-                                    <div class="col-9 ">
 
-                                        <div class="d-flex m-4">
-                                            <div class="  fs-4 me-5">Book Name</div>
-                                        </div>
-                                        <div class="d-flex m-4 ">
-                                            <input type="text" class=" container-fluid  fs-5 me-4" placeholder='Book Name' id='title' required></input>
-                                        </div>
-
-                                        <div class="d-flex m-4">
-                                            <div class="  fs-5 me-4">Name Series</div>
-                                        </div>
-                                        <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Name Series' id='series' required></input>
-                                        </div>
-
-                                        <div class="d-flex m-4">
-                                            <div class="  fs-5 me-4">Author</div>
-                                        </div>
-                                        <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Author Name' id='author' required></input>
-                                        </div>
-
-                                        <div class="d-flex m-4">
-                                            <div class="  fs-5 me-4">Published </div>
-                                        </div>
-                                        <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Published' id='published' required></input>
-                                        </div>
-
-                                        <div class="d-flex m-4">
-                                            <div class="  fs-5 me-5">Publisher</div>
-                                        </div>
-                                        <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Publisher Name' id='publisher' required></input>
-                                        </div>
-
-                                        <div class="d-flex m-4">
-                                            <div class="  fs-5 me-5">Price</div>
-                                        </div>
-                                        <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Price' id='price' required></input>
-                                        </div>
-                                        <div class="d-flex m-4">
-                                            <div class="  fs-5 me-5">Pages</div>
-                                        </div>
-                                        <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Pages' id='page' required></input>
-                                        </div>
-                                        <div class="d-flex m-4">
-                                            <div class="  fs-5 me-5">ImagesURL</div>
-                                        </div>
-                                        <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Link Image' id='imgURL' required></input>
-                                        </div>
-
-                                        <div class="d-flex m-4">
-                                            <div class="  fs-5 me-5">Synopsis</div>
-                                        </div>
-                                        <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Synopsis' id='synopsis' required></input>
-                                        </div>
-
-
-                                        <div class="d-flex m-4">
-                                            <div class="  fs-5 me-5">Genre</div>
-                                        </div>
-                                        <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Genre'></input>
-                                        </div>
-
-
-                                        <div class="d-flex m-4">
-
-                                        </div>
-
-
-                                        <div class="d-flex m-4">
-                                            <button type="submit" class="btn btn-success btn-sm me-1">Confirm</button>
-                                            <button type="button" class="btn btn-danger btn-sm me-1">Cancel</button>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex m-4">
-                                    </div>
-                                    <div class="col-1  ">
-                                    </div>
-
-
-                                    <div class="d-flex m-4">
-                                        <div class="container-fluid  fs-5 me-4 border-bottom border-3 border-dark pb-2"></div>
-                                    </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
 
     )
@@ -155,8 +158,11 @@ export default styled(Addbook)`
 .carousel-item{
     height: 32rem;
 }
-.notification{
-
+.page-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
 }
 .notification h1{
     color: #ffffff;

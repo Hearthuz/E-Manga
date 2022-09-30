@@ -1,39 +1,53 @@
-import React, { useState, useEffect, Redirect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import { Link } from 'react-router-dom'
 
-function Login({ className }) {
+async function fetchToken(userIn) {
+    let response = await fetch('http://localhost:8080/users/');
+    console.log(response.status);
+
+    if (response.status === 200) {
+        let data = await response.json();
+        console.log(data);
+
+        function check(user) {
+            if (user.username === userIn.username && user.password === userIn.password) {
+                console.log(user);
+                return user;
+            }
+        }
+
+        const userRight = data.filter(check);
+        console.log(userRight);
+
+        if (userRight.length !== 0) {
+            return userRight;
+        }
+        else {
+            alert('wrong username or password');
+            return null;
+        }
+    }
+}
+function Login({ className, setToken }) {
     const logo = require('../assets/logo.png');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [userData, setUserData] = useState([]);
-    const [userID, setUserID] = useState([]);
-    const [currentUser, setCurrentUser] = useState(false);
 
-    useEffect(() => {
-        async function getUser() {
-            const user = await axios.get(
-                'http://localhost:8080/users/'
-            );
-            setUserData(user.data);
-        }
-        getUser();
-    }, []);
-
-    function handleSubmit(e) {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const user = userData.find(user => user.username === username && user.password === password);
-        setUserID(user);
-        setCurrentUser(true);
-    }
-
-    if (currentUser) {
-        <Redirect to="/"></Redirect>
+        const token = await fetchToken({
+            username,
+            password
+        })
+        console.log(token);
+        setToken(token);
     }
 
     return (
-        <div className={className}>
+        <div className={
+            className
+        }>
             <div class="login-container">
                 <div class="LoginPage">
                     <div class="loginLogo row">

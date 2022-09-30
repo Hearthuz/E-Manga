@@ -58,7 +58,7 @@ export default styled(BookArchive)`
     .bookArchive-container{
         display: flex;
         justify-content: center;
-        padding: 4rem;  
+        padding: 4rem;
     }
     input {
         width : 100%;

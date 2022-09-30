@@ -16,10 +16,10 @@ function NavbarAdmin({ className }) {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <Link to="/#">Add</Link>
+                <Link to="/addBook">Add</Link>
               </li>
               <li class="nav-item">
-                <Link to="/BookArchive">Update & Delete</Link>
+                <Link to="/bookArchive">Update & Delete</Link>
               </li>
             </ul>
             <div class="user mb-2 mb-lg-0">

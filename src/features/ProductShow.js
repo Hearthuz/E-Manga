@@ -10,9 +10,10 @@ import { useParams } from 'react-router-dom';
 function ProductShow({ className }) {
     const [manga, setManga] = useState([]);
     const { id } = useParams();
-    const [sameSeries, setSameSeries] = useState([]);
+    const [cart, setCart] = useState([]);
+    const [favorite, setFavorite] = useState([]);
+    const userId = localStorage.getItem("token");
 
-    console.log(id);
     useEffect(() => {
         async function getManga() {
             const manga = await axios.get(
@@ -21,19 +22,76 @@ function ProductShow({ className }) {
             setManga(manga?.data);
         }
         getManga();
+
+        async function getCart() {
+            const manga = await axios.get(
+                `http://localhost:8080/users/${userId[7]}`
+            );
+            setCart(manga.data.cart);
+        }
+        getCart();
+
+        async function getFavoriteManga() {
+            const manga = await axios.get(
+                `http://localhost:8080/users/${userId[7]}`
+            );
+            setFavorite(manga.data.favoriteBooks);
+        }
+        getFavoriteManga();
     }, []);
 
-    const getSameSeries = (item) => {
-        axios.get(
-            `http://localhost:8080/manga?seriesName${item.seriesName}`
-        ).then(res => {
-            setSameSeries(res.data);
-            console.log(res.data);
-        })
+    function checkData(data, id) {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].id === id) {
+                return false;
+            }
+        }
+        return true;
+    }
+    function addFavorites(e) {
+        e.preventDefault();
+        const check = checkData(favorite, manga.id);
+        if (check === true || check === undefined) {
+            axios.post(`http://localhost:8080/users/${userId[7]}/favorite`, {
+                id: manga.id,
+                name: manga.name,
+                price: manga.price,
+                imageURL: manga.imageURL
+            }).then((response) => {
+                alert("Add Success");
+                window.location.reload();
+                console.log(response);
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+        else {
+            alert("Alerady Add");
+        }
     }
 
-    console.log(manga);
-    console.log(sameSeries);
+    function addCart(e) {
+        e.preventDefault();
+        const check = checkData(cart, manga.id);
+        if (check === true || check === undefined) {
+            axios.post(`http://localhost:8080/users/${userId[7]}/cart`, {
+                id: manga.id,
+                name: manga.name,
+                price: manga.price,
+                imageURL: manga.imageURL
+            }).then((response) => {
+                alert("Add Success");
+                window.location.reload();
+                console.log(response);
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+        else {
+            alert("Alerady Add");
+        }
+    }
+
     return (
         <div className={className}>
             <Navbar />
@@ -63,8 +121,8 @@ function ProductShow({ className }) {
                             </div>
                             <div class="row d-flex justify-content-around">
                                 <button class="col-3 tryBtn btn btn-outline-light shadow-md" role="button">Try it!</button>
-                                <button class="col-3 buyBtn btn btn-outline-success" role="button">Buy it!</button>
-                                <button class="col-3 addFavBtn btn btn-outline-danger" role="button"><FiHeart /></button>
+                                <button class="col-3 buyBtn btn btn-outline-success" role="button" onClick={addCart}>Buy it!</button>
+                                <button class="col-3 addFavBtn btn btn-outline-danger" role="button" onClick={addFavorites}><FiHeart /></button>
                             </div>
                             <div class="row p-4">
                                 <div class="d-flex justify-content-around align-items-center">

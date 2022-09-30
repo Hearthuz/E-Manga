@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 
 function Navbar({ className }) {
   const logo = require('../assets/logo.png');
+  const handleClick = (e) => {
+    localStorage.clear();
+    window.location.reload();
+  }
   return (
     <header className={className}>
       <div class="navbar navbar-expand-lg">
@@ -29,8 +33,7 @@ function Navbar({ className }) {
               <Link to="/cart"><i class="bi bi-bag"></i> Cart</Link>
             </div>
             <div class="user mb-2 mb-lg-0 fw-bold">
-              <Link to="/login">Login</Link>
-              <Link to="/Register"> / Register</Link>
+              <Link onClick={handleClick}>Log out</Link>
             </div>
           </div>
         </div>
