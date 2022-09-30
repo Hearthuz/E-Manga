@@ -108,7 +108,7 @@ function EditBook({ className }) {
                                                 <div class="  fs-5 me-5">Pages</div>
                                             </div>
                                             <div class="d-flex m-4">
-                                                <input type="text" class="container-fluid  fs-5 me-4" placeholder={manga.page} id='page' required></input>
+                                                <input type="text" class="container-fluid  fs-5 me-4" placeholder={manga.pages} id='page' required></input>
                                             </div>
                                             <div class="d-flex m-4">
                                                 <div class="  fs-5 me-5">ImagesURL</div>

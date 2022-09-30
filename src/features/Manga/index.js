@@ -5,29 +5,34 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Favorite from '../Favorite';
 
-function Manga({ item }) {
+function Manga({ item, setReFa }) {
     const [cart, setCart] = useState([]);
     const [favorite, setFavorite] = useState([]);
-    const userId = localStorage.getItem("token");
+    const [reFav, setReFav] = useState([]);
+    const [reCart, setReCart] = useState([]);
+    const userData = JSON.parse(localStorage.getItem("token"));
+    const userId = userData[0].id;
     let location = useLocation();
 
     useEffect(() => {
         async function getCart() {
             const manga = await axios.get(
-                `http://localhost:8080/users/${userId[7]}`
+                `http://localhost:8080/users/${userId}`
             );
             setCart(manga.data.cart);
         }
         getCart();
+    }, [reCart]);
 
+    useEffect(() => {
         async function getFavoriteManga() {
             const manga = await axios.get(
-                `http://localhost:8080/users/${userId[7]}`
+                `http://localhost:8080/users/${userId}`
             );
             setFavorite(manga.data.favoriteBooks);
         }
         getFavoriteManga();
-    }, []);
+    }, [reFav]);
 
     function checkData(data, id) {
         for (let i = 0; i < data.length; i++) {
@@ -40,9 +45,10 @@ function Manga({ item }) {
     function addFavorites(e) {
         e.preventDefault();
         if (location.pathname === '/favorite') {
-            axios.delete(`http://localhost:8080/users/${userId[7]}/favorite/${item.id}`)
+            axios.delete(`http://localhost:8080/users/${userId}/favorite/${item.id}`)
                 .then((res) => {
                     alert("Remove from favorite")
+                    setReFav(favorite);
                     window.location.reload();
                     console.log(res)
                 })
@@ -53,14 +59,14 @@ function Manga({ item }) {
         else {
             const check = checkData(favorite, item.id);
             if (check === true || check === undefined) {
-                axios.post(`http://localhost:8080/users/${userId[7]}/favorite`, {
+                axios.post(`http://localhost:8080/users/${userId}/favorite`, {
                     id: item.id,
                     name: item.name,
                     price: item.price,
                     imageURL: item.imageURL
                 }).then((response) => {
                     alert("Add Success");
-                    window.location.reload();
+                    setReFav(favorite);
                     console.log(response);
                 }).catch((error) => {
                     console.log(error);
@@ -76,14 +82,14 @@ function Manga({ item }) {
         e.preventDefault();
         const check = checkData(cart, item.id);
         if (check === true || check === undefined) {
-            axios.post(`http://localhost:8080/users/${userId[7]}/cart`, {
+            axios.post(`http://localhost:8080/users/${userId}/cart`, {
                 id: item.id,
                 name: item.name,
                 price: item.price,
                 imageURL: item.imageURL
             }).then((response) => {
                 alert("Add Success");
-                window.location.reload();
+                setReCart(cart);
                 console.log(response);
             }).catch((error) => {
                 console.log(error);

@@ -12,7 +12,10 @@ function ProductShow({ className }) {
     const { id } = useParams();
     const [cart, setCart] = useState([]);
     const [favorite, setFavorite] = useState([]);
-    const userId = localStorage.getItem("token");
+    const [reFav, setReFav] = useState([]);
+    const [reCart, setReCart] = useState([]);
+    const userData = JSON.parse(localStorage.getItem("token"));
+    const userId = userData[0].id;
 
     useEffect(() => {
         async function getManga() {
@@ -22,23 +25,29 @@ function ProductShow({ className }) {
             setManga(manga?.data);
         }
         getManga();
+    }, []);
 
+    const genreAll = (manga.genre);
+
+    useEffect(() => {
         async function getCart() {
             const manga = await axios.get(
-                `http://localhost:8080/users/${userId[7]}`
+                `http://localhost:8080/users/${userId}`
             );
             setCart(manga.data.cart);
         }
         getCart();
+    }, [reCart]);
 
+    useEffect(() => {
         async function getFavoriteManga() {
             const manga = await axios.get(
-                `http://localhost:8080/users/${userId[7]}`
+                `http://localhost:8080/users/${userId}`
             );
             setFavorite(manga.data.favoriteBooks);
         }
         getFavoriteManga();
-    }, []);
+    }, [reFav]);
 
     function checkData(data, id) {
         for (let i = 0; i < data.length; i++) {
@@ -52,14 +61,14 @@ function ProductShow({ className }) {
         e.preventDefault();
         const check = checkData(favorite, manga.id);
         if (check === true || check === undefined) {
-            axios.post(`http://localhost:8080/users/${userId[7]}/favorite`, {
+            axios.post(`http://localhost:8080/users/${userId}/favorite`, {
                 id: manga.id,
                 name: manga.name,
                 price: manga.price,
                 imageURL: manga.imageURL
             }).then((response) => {
                 alert("Add Success");
-                window.location.reload();
+                setReFav(favorite)
                 console.log(response);
             }).catch((error) => {
                 console.log(error);
@@ -74,14 +83,14 @@ function ProductShow({ className }) {
         e.preventDefault();
         const check = checkData(cart, manga.id);
         if (check === true || check === undefined) {
-            axios.post(`http://localhost:8080/users/${userId[7]}/cart`, {
+            axios.post(`http://localhost:8080/users/${userId}/cart`, {
                 id: manga.id,
                 name: manga.name,
                 price: manga.price,
                 imageURL: manga.imageURL
             }).then((response) => {
                 alert("Add Success");
-                window.location.reload();
+                setReCart(cart)
                 console.log(response);
             }).catch((error) => {
                 console.log(error);
@@ -97,89 +106,84 @@ function ProductShow({ className }) {
             <Navbar />
             <div className="productShow-container">
                 <div>
-                    <div class="row">
-                        <div class="productName">{manga.name}</div>
+                    <div className="row">
+                        <div className="productName">{manga.name}</div>
                     </div>
-                    <div class="row p-4">
-                        <div class="col-md-6 col-sm-12 book_detail pr-1 py-1 justify-content-center">
-                            <div class="row">
-                                <img class="book_cover" src={manga.imageURL} />
+                    <div className="row p-4">
+                        <div className="col-md-6 col-sm-12 book_detail pr-1 py-1 justify-content-center">
+                            <div className="row">
+                                <img className="book_cover" src={manga.imageURL} />
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-12 detailFrame rounded">
-                            <div class="row">
-                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 frontTag p-4 pr-6">Author</div>
-                                <div class="col-xl-9 col-lg-8 col-md-6 col-sm-12 backTag p-4 pr-6">{manga.author}</div>
+                        <div className="col-md-6 col-sm-12 detailFrame rounded">
+                            <div className="row">
+                                <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 frontTag p-4 pr-6">Author</div>
+                                <div className="col-xl-9 col-lg-8 col-md-6 col-sm-12 backTag p-4 pr-6">{manga.author}</div>
                             </div>
-                            <div class="row">
-                                <div class="col-xl-3 col-lg-4 col-md-6 frontTag p-4 pr-6">Publisher</div>
-                                <div class="col-xl-9 col-lg-8 col-md-6 backTag p-4 pr-6">{manga.publisher}</div>
+                            <div className="row">
+                                <div className="col-xl-3 col-lg-4 col-md-6 frontTag p-4 pr-6">Publisher</div>
+                                <div className="col-xl-9 col-lg-8 col-md-6 backTag p-4 pr-6">{manga.publisher}</div>
                             </div>
-                            <div class="row">
-                                <div class="col-xl-3 col-lg-4 col-md-6 frontTag p-4 pr-6">BookType</div>
-                                <div class="col-xl-9 col-lg-8 col-md-6 backTag p-4 pr-6">Comics</div>
+                            <div className="row">
+                                <div className="col-xl-3 col-lg-4 col-md-6 frontTag p-4 pr-6">BookType</div>
+                                <div className="col-xl-9 col-lg-8 col-md-6 backTag p-4 pr-6">Comics</div>
                             </div>
-                            <div class="row d-flex justify-content-around">
-                                <button class="col-3 tryBtn btn btn-outline-light shadow-md" role="button">Try it!</button>
-                                <button class="col-3 buyBtn btn btn-outline-success" role="button" onClick={addCart}>Buy it!</button>
-                                <button class="col-3 addFavBtn btn btn-outline-danger" role="button" onClick={addFavorites}><FiHeart /></button>
+                            <div className="row d-flex justify-content-around">
+                                <button className="col-3 tryBtn btn btn-outline-light shadow-md" role="button">Try it!</button>
+                                <button className="col-3 buyBtn btn btn-outline-success" role="button" onClick={addCart}>Buy it!</button>
+                                <button className="col-3 addFavBtn btn btn-outline-danger" role="button" onClick={addFavorites}><FiHeart /></button>
                             </div>
-                            <div class="row p-4">
-                                <div class="d-flex justify-content-around align-items-center">
+                            <div className="row p-4">
+                                <div className="d-flex justify-content-around align-items-center">
                                     <div>
-                                        <div class="rating">
+                                        <div className="rating">
                                             <i><BsStar /></i>
                                             <i><BsStar /></i>
                                             <i><BsStar /></i>
                                             <i><BsStar /></i>
                                             <i><BsStar /></i>
                                         </div>
-                                        <h5 class="review-count">12 Reviews</h5>
+                                        <h5 className="review-count">12 Reviews</h5>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row py-2 px-4">
-                                <span class="col-xl-3 col-lg-4 col-md-6 seriesName border-bottom border-black">Series :</span>
-                                <span class="col-xl-9 col-lg-8 col-md-6 seriesName d-flex justify-content-end border-bottom border-black">{manga.seriesName}</span>
+                            <div className="row py-2 px-4">
+                                <span className="col-xl-3 col-lg-4 col-md-6 seriesName border-bottom border-black">Series :</span>
+                                <span className="col-xl-9 col-lg-8 col-md-6 seriesName d-flex justify-content-end border-bottom border-black">{manga.seriesName}</span>
                             </div>
-                            <div class="row py-2 px-4">
-                                <span class="col-xl-3 col-lg-4 col-md-6 fileType border-bottom border-black">File type :</span>
-                                <span class="col-xl-9 col-lg-8 col-md-6 fileType d-flex justify-content-end border-bottom border-black">PDF</span>
+                            <div className="row py-2 px-4">
+                                <span className="col-xl-3 col-lg-4 col-md-6 fileType border-bottom border-black">File type :</span>
+                                <span className="col-xl-9 col-lg-8 col-md-6 fileType d-flex justify-content-end border-bottom border-black">PDF</span>
                             </div>
-                            <div class="row py-2 px-4">
-                                <span class="col-xl-3 col-lg-4 col-md-6 sellDate border-bottom border-black">Release date :</span>
-                                <span class="col-xl-9 col-lg-8 col-md-6 sellDate d-flex justify-content-end border-bottom border-black">{manga.published}</span>
+                            <div className="row py-2 px-4">
+                                <span className="col-xl-3 col-lg-4 col-md-6 sellDate border-bottom border-black">Release date :</span>
+                                <span className="col-xl-9 col-lg-8 col-md-6 sellDate d-flex justify-content-end border-bottom border-black">{manga.published}</span>
                             </div>
-                            <div class="row py-2 px-4">
-                                <span class="col-xl-3 col-lg-4 col-md-6 bookLength border-bottom border-black">Length :</span>
-                                <span class="col-xl-9 col-lg-8 col-md-6 bookLength d-flex justify-content-end border-bottom border-black">{manga.page} pages</span>
+                            <div className="row py-2 px-4">
+                                <span className="col-xl-3 col-lg-4 col-md-6 bookLength border-bottom border-black">Length :</span>
+                                <span className="col-xl-9 col-lg-8 col-md-6 bookLength d-flex justify-content-end border-bottom border-black">{manga.page} pages</span>
                             </div>
-                            <div class="row py-2 px-4">
-                                <span class="col-xl-3 col-lg-4 col-md-6 price border-bottom border-black">Price :</span>
-                                <span class="col-xl-9 col-lg-8 col-md-6 price d-flex justify-content-end border-bottom border-black">{manga.price} ฿</span>
+                            <div className="row py-2 px-4">
+                                <span className="col-xl-3 col-lg-4 col-md-6 price border-bottom border-black">Price :</span>
+                                <span className="col-xl-9 col-lg-8 col-md-6 price d-flex justify-content-end border-bottom border-black">{manga.price} ฿</span>
                             </div>
                         </div>
                     </div>
-                    <div class="row p-4">
-                        <div class="row bg-white synopsisBlock d-flex justify-content-center align-items-center fit-content rounded">
-                            <span class="synopsisText py-2">{manga.synopsis}</span>
+                    <div className="row p-4">
+                        <div className="bg-white synopsisBlock d-flex justify-content-center align-items-center fit-content rounded">
+                            <span className="synopsisText py-2">{manga.synopsis}</span>
                         </div>
                     </div>
-                    <div class="row d-flex justify-content-center p-2">
-                        <div class="col-md-2 col-4 bg-white manga_Tag rounded-pill">Japanese manga</div>
-                        <div class="col-md-2 col-4 bg-white manga_Tag rounded-pill">Tag</div>
-                        <div class="col-md-2 col-4 bg-white manga_Tag rounded-pill">Tag</div>
-                        <div class="col-md-2 col-4 bg-white manga_Tag rounded-pill">Tag</div>
-                        <div class="col-md-2 col-4 bg-white manga_Tag rounded-pill">Tag</div>
-                        <div class="col-md-2 col-4 bg-white manga_Tag rounded-pill">Tag</div>
-                        <div class="col-md-2 col-4 bg-white manga_Tag rounded-pill">Tag</div>
-                    </div>
-                    <div class="row d-flex justify-content-center p-2">
-
+                    <div className="row d-flex justify-content-center p-2">
+                        {
+                            genreAll?.map(mag => {
+                                return (<div className="col-md-2 col-5 bg-white manga_Tag rounded-pill fit-content p-3">{mag}</div>)
+                            })
+                        }
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
 
@@ -194,6 +198,7 @@ export default styled(ProductShow)`
     max-width: 1280px;
     justify-content: center;
     padding: 4rem;
+    width: 90%;
 }
 .productName{
     text-align : center;
@@ -221,11 +226,10 @@ export default styled(ProductShow)`
     color: #8758FF;
 }
 .manga_Tag{
-    text-align : center;
     margin: 0.5rem;
     margin-bottom :1rem;  
-    object-fit : cover;
     opacity: 0.85;
+    text-align : center;
 }
 .addBook{
     width : 9rem;

@@ -3,28 +3,38 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import axios from 'axios';
-import CartAccord from './Manga/CartAccord';
-import { AiFillDelete } from "react-icons/ai";
 import Form from 'react-bootstrap/Form';
 import Accordion from 'react-bootstrap/Accordion';
 import CartManga from './CartManga';
 
 function Cart({ className }) {
     const [cart, setCart] = useState([]);
-    const userId = localStorage.getItem("token");
-    const [totalPay, setTotalPay] = useState();
+    const userData = JSON.parse(localStorage.getItem("token"));
+    const userId = userData[0].id;
 
     useEffect(() => {
         async function getCart() {
             const manga = await axios.get(
-                `http://localhost:8080/users/${userId[7]}`
+                `http://localhost:8080/users/${userId}`
             );
             setCart(manga.data.cart);
         }
         getCart();
     }, []);
 
-    // let sum = 0;
+    const removeAll = (e) => {
+        e.preventDefault();
+        axios.delete(`http://localhost:8080/users/${userId}/cart/`)
+            .then((res) => {
+                alert("Check it out");
+                console.log(res);
+                window.location.reload();
+            })
+            .catch((err) => {
+                alert(err)
+            })
+    }
+
     function getPrice() {
         let sum = 0;
         for (let i = 0; i < cart.length; i++) {
@@ -35,40 +45,41 @@ function Cart({ className }) {
     }
 
     const totalPrice = getPrice();
-    console.log(totalPrice);
     return (
         <div className={className}>
             <Navbar />
             <div class="cart-container">
                 <>
-                    <div class="row d-flex py-2">
-                        <h1 class="d-flex justify-content-center cart-header"><strong>CART LIST</strong></h1>
-                        <div class="row d-flex py-2 bg-white rounded">
-                            <Form>
-                                <Accordion defaultActiveKey="{1}">
-                                    {
-                                        cart.map((result) =>
-                                            <CartManga key={result.key} item={result}></CartManga>
-                                        )
-                                    }
-                                </Accordion>
-                                <div class="row">
-                                    <div class="d-flex justify-content-center">
-                                        <span class="totalHead">Total Payment</span>
+                    <div class="d-flex">
+                        <div>
+                            <div class="d-flex justify-content-center cart-header h1">CART LIST</div>
+                            <div class="d-flex row bg-white rounded">
+                                <Form>
+                                    <Accordion defaultActiveKey="{1}">
+                                        {
+                                            cart.map((result) =>
+                                                <CartManga key={result.key} item={result}></CartManga>
+                                            )
+                                        }
+                                    </Accordion>
+                                    <div class="row">
+                                        <div class="d-flex justify-content-center">
+                                            <span class="totalHead">Total Payment</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="d-flex justify-content-center">
+                                    <div class="row">
+                                        <div class="d-flex justify-content-center">
 
-                                        <span class="totalPayText">{totalPrice} ฿</span>
+                                            <span class="totalPayText">{totalPrice} ฿</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row py-3">
-                                    <div class="d-flex justify-content-center">
-                                        <button type="button" class="btn btn-outline-success">Check it Out!</button>
+                                    <div class="row py-3">
+                                        <div class="d-flex justify-content-center">
+                                            <button type="button" class="btn btn-outline-success" onClick={removeAll}>Check it Out!</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </Form>
+                                </Form>
+                            </div>
                         </div>
                     </div>
                 </>
@@ -91,7 +102,8 @@ export default styled(Cart)`
 }
     .cart-header{
         color : #f5f5f5;
-        font-size : 4rem;
+        font-size : 40px;
+        padding: 3rem 0 3rem 0;
     }
     .dataBlock{
         width : 50rem;

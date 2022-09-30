@@ -41,7 +41,6 @@ function Login({ className, setToken }) {
             password
         })
         setToken(token);
-        console.log(token[0].permissionLevel);
         if (token[0].permissionLevel === 2) {
             window.location.href = "/addBook";
         }

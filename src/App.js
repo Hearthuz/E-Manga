@@ -14,7 +14,6 @@ import EditBook from './features/EditBook';
 
 const App = () => {
     const { token, setToken } = useToken();
-    console.log(token);
 
     if (!token || token.lenght === 0) {
         return (
