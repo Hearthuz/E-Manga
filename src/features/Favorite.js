@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import Navbar from './Navbar';
 import axios from 'axios';
 import Manga from './Manga';
+import { useLocation } from 'react-router-dom';
 
 function Favorite({ className }) {
     const [favorite, setFavorite] = useState([]);
     const userId = localStorage.getItem("token");
-
+    let location = useLocation();
+    console.log(location);
     useEffect(() => {
         async function getFavoriteManga() {
             const manga = await axios.get(

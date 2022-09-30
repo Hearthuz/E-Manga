@@ -5,14 +5,13 @@ import GlobalStyle from './features/GlobalStyle';
 import Home from './features/Home';
 import Login from './features/Login';
 import Favorite from './features/Favorite';
-import Register from './features/Register';
 import ProductShow from './features/ProductShow';
 import Notification from './features/Notification';
 import Cart from './features/Cart';
 import BookArchive from './features/BookArchive';
 import AddBook from './features/AddBook';
 import useToken from './features/useToken';
-import Editbook from './features/EditBook';
+import EditBook from './features/EditBook';
 
 const App = () => {
     const { token, setToken } = useToken();
@@ -25,9 +24,6 @@ const App = () => {
             <>
                 <GlobalStyle />
                 <Login setToken={setToken} />
-                {/* <Routes>
-                    <Route path="/register" element={<Register />} />
-                </Routes> */}
             </>
         )
     }
@@ -42,7 +38,7 @@ const App = () => {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/bookArchive" element={<BookArchive />} />
                 <Route path="/addBook" element={<AddBook />} />
-                <Route path="/editBook/:id" element={<Editbook />} />
+                <Route path="/editBook/:id" element={<EditBook />} />
             </Routes>
         </>
     )
