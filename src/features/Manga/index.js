@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -9,6 +9,8 @@ function Manga({ item }) {
     const [cart, setCart] = useState([]);
     const [favorite, setFavorite] = useState([]);
     const userId = localStorage.getItem("token");
+    let location = useLocation();
+
     useEffect(() => {
         async function getCart() {
             const manga = await axios.get(
@@ -37,23 +39,36 @@ function Manga({ item }) {
     }
     function addFavorites(e) {
         e.preventDefault();
-        const check = checkData(favorite, item.id);
-        if (check === true || check === undefined) {
-            axios.post(`http://localhost:8080/users/${userId[7]}/favorite`, {
-                id: item.id,
-                name: item.name,
-                price: item.price,
-                imageURL: item.imageURL
-            }).then((response) => {
-                alert("Add Success");
-                window.location.reload();
-                console.log(response);
-            }).catch((error) => {
-                console.log(error);
-            });
+        if (location.pathname === '/favorite') {
+            axios.delete(`http://localhost:8080/users/${userId[7]}/favorite/${item.id}`)
+                .then((res) => {
+                    alert("Remove from favorite")
+                    window.location.reload();
+                    console.log(res)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
         else {
-            alert("Alerady Add");
+            const check = checkData(favorite, item.id);
+            if (check === true || check === undefined) {
+                axios.post(`http://localhost:8080/users/${userId[7]}/favorite`, {
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    imageURL: item.imageURL
+                }).then((response) => {
+                    alert("Add Success");
+                    window.location.reload();
+                    console.log(response);
+                }).catch((error) => {
+                    console.log(error);
+                });
+            }
+            else {
+                alert("Alerady Add");
+            }
         }
     }
 

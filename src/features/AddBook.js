@@ -46,10 +46,10 @@ function Addbook({ className }) {
                                         <div class="d-flex m-4">
                                             <div class="container-fluid  fs-5 me-4 border-bottom border-3 border-dark pb-2"></div>
                                         </div>
-                                        <div class="col-3  ">
+                                        <div class="col-12 col-md-3 ">
                                             <img src="https://findicons.com/files/icons/2799/flat_icons/128/book_add.png" class="card-img-top" alt="..." />
                                         </div>
-                                        <div class="col-9 ">
+                                        <div class="col-12 col-md-9 ">
 
                                             <div class="d-flex m-4">
                                                 <div class="  fs-4 me-5">Book Name</div>
