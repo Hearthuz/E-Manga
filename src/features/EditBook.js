@@ -38,6 +38,8 @@ function EditBook({ className }) {
             synopsis: e.target.synopsis.value,
         }).then((response) => {
             console.log(response);
+            alert("Edit Complete");
+            window.location.href = "/bookArchive";
         }).catch((error) => {
             console.log(error);
         });

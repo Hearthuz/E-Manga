@@ -24,6 +24,8 @@ function Addbook({ className }) {
             synopsis: e.target.synopsis.value,
         }).then((response) => {
             console.log(response);
+            alert("Add Complete");
+            window.location.href = "/bookArchive";
         }).catch((error) => {
             console.log(error);
         });

@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import axios from 'axios';
-import CartManga from './CartManga';
+import CartAccord from './Manga/CartAccord';
+import { AiFillDelete } from "react-icons/ai";
+import Form from 'react-bootstrap/Form';
+import Accordion from 'react-bootstrap/Accordion';
 
 function Cart({ className }) {
     const [cart, setCart] = useState([]);
@@ -23,21 +26,22 @@ function Cart({ className }) {
     return (
         <div className={className}>
             <Navbar />
-            <div class="cart-container">
-                <div>
-                    <h1 class="row header py-5 fw-bolder d-flex justify-content-center">Cart Lists</h1>
-                    <div class="row dataBlock py-10 px-1 d-flex justify-content-center bg-white rounded">
-                        {
-                            cart.map((result) =>
-                                <CartManga key={result.key} item={result}></CartManga>
-                            )
-                        }
-                    </div>
-                    <div class="row">
-                        <div class="d-flex py-2 px-4"><input type={'checkbox'}></input><span class="px-2 selectAll">Select All</span></div>
+            <>
+                <div class="row d-flex py-2">
+                    <h1 class="d-flex justify-content-center cart-header"><strong>CART LIST</strong></h1>
+                    <div class="row d-flex py-2 bg-white rounded">
+                        <Form>
+                            <Accordion defaultActiveKey="{1}">
+                                {
+                                    cart.map((result) =>
+                                        <CartAccord key={result.key} item={result}></CartAccord>
+                                    )
+                                }
+                            </Accordion>
+                        </Form>
                     </div>
                 </div>
-            </div>
+            </>
         </div>
 
     )
