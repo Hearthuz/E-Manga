@@ -7,62 +7,63 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 function ArchiveCard({ item }) {
-    const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    const delFunc = () => {
-        axios.delete(`http://localhost:8080/manga/${item.id}`).then((response) => {
-            console.log(response);
-        }).catch((error) => {
-            console.log(error);
-        });
-    }
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const delFunc = () => {
+    axios.delete(`http://localhost:8080/manga/${item.id}`).then((response) => {
+      console.log(response);
+      window.location.reload();
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
 
-    return (
-        <>
-        <div class="col-xl-2 col-md-3 col-sm-4 col-6" onClick={handleShow}>
-            <div class="manga-box position-relative">
-                <div class="card">
-                    <img id="manga_url" src={item.imageURL} class="card-img-top rounded" alt="..." />
-                    <div class="image_overlay image_overlay-blur rounded">
-                        <div class="card-button row">
-                            <div class="mangaName">{item.name}</div>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <>
+      <div class="col-xl-2 col-md-3 col-sm-4 col-6" onClick={handleShow}>
+        <div class="manga-box position-relative">
+          <div class="card">
+            <img id="manga_url" src={item.imageURL} class="card-img-top rounded" alt="..." />
+            <div class="image_overlay image_overlay-blur rounded">
+              <div class="card-button row">
+                <div class="mangaName">{item.name}</div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
 
-        <Modal
-          show={show}
-          onHide={handleClose}
-          backdrop="static"
-          keyboard={false}
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Want to Edit?</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            Do you want to Edit {item.name}
-          </Modal.Body>
-          <Modal.Footer>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Want to Edit?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Do you want to Edit {item.name}
+        </Modal.Body>
+        <Modal.Footer>
           <Link to={{
             pathname: `/editBook/${item.id} `
-        }}><Button variant="success">Edit</Button></Link>
-            <Button variant="danger" onClick={delFunc}>Delete</Button>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </>
-  
-    )
+          }}><Button variant="success">Edit</Button></Link>
+          <Button variant="danger" onClick={delFunc}>Delete</Button>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+
+  )
 }
 
 ArchiveCard.propTypes = {
-    item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired
 };
 export default styled(ArchiveCard)`
 `
