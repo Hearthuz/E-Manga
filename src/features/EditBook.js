@@ -1,9 +1,6 @@
-import React, { useEffect, useState }, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { NavItem } from 'react-bootstrap';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { NavItem } from 'react-bootstrap';

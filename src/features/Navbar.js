@@ -25,9 +25,6 @@ function Navbar({ className }) {
               <li class="nav-item">
                 <Link to="/favorite">Favorite</Link>
               </li>
-              <li class="nav-item">
-                <Link to="/notification">Notification</Link>
-              </li>
             </ul>
             <div class="fw-bold">
               <Link to="/cart"><i class="bi bi-bag"></i> Cart</Link>

@@ -6,7 +6,6 @@ import Home from './features/Home';
 import Login from './features/Login';
 import Favorite from './features/Favorite';
 import ProductShow from './features/ProductShow';
-import Notification from './features/Notification';
 import Cart from './features/Cart';
 import BookArchive from './features/BookArchive';
 import AddBook from './features/AddBook';
@@ -18,8 +17,6 @@ const App = () => {
     console.log(token);
 
     if (!token || token.lenght === 0) {
-        console.log("go to login");
-
         return (
             <>
                 <GlobalStyle />
@@ -34,7 +31,6 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/favorite" element={<Favorite />} />
                 <Route path="/productShow/:id" element={<ProductShow />} />
-                <Route path="/notification" element={<Notification />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/bookArchive" element={<BookArchive />} />
                 <Route path="/addBook" element={<AddBook />} />
