@@ -40,14 +40,18 @@ function Login({ className, setToken }) {
             username,
             password
         })
-        console.log(token);
         setToken(token);
+        console.log(token[0].permissionLevel);
+        if (token[0].permissionLevel === 2) {
+            window.location.href = "/addBook";
+        }
+        else if (token[0].permissionLevel === 1) {
+            window.location.href = "/";
+        }
     }
 
     return (
-        <div className={
-            className
-        }>
+        <div className={className}>
             <div class="login-container">
                 <div class="LoginPage">
                     <div class="loginLogo row">

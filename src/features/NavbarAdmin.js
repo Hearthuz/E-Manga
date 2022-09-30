@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 
 function NavbarAdmin({ className }) {
   const logo = require('../assets/logo.png');
+  const handleClick = (e) => {
+    localStorage.clear();
+    window.location.reload();
+  }
   return (
     <header className={className}>
       <div class="navbar navbar-expand-lg">
@@ -22,8 +26,8 @@ function NavbarAdmin({ className }) {
                 <Link to="/bookArchive">Update & Delete</Link>
               </li>
             </ul>
-            <div class="user mb-2 mb-lg-0">
-              <Link>Admin Page</Link>
+            <div class="user mb-2 mb-lg-0 fw-bold">
+              <Link onClick={handleClick}>Log out</Link>
             </div>
           </div>
         </div>
