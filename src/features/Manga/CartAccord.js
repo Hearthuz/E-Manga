@@ -10,7 +10,7 @@ import axios from 'axios';
 function CartAccord({ item }) {
 
     const delFunc = () => {
-        axios.delete(`http://localhost:8080//${item.id}`).then((response) => {
+        axios.delete(``).then((response) => {
             console.log(response);
         }).catch((error) => {
             console.log(error);
