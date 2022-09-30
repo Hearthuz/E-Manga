@@ -109,15 +109,6 @@ function Addbook({ className }) {
                                             <input type="text" class="container-fluid  fs-5 me-4" placeholder='Synopsis' id='synopsis' required></input>
                                         </div>
 
-
-                                        <div class="d-flex m-4">
-                                            <div class="  fs-5 me-5">Genre</div>
-                                        </div>
-                                        <div class="d-flex m-4">
-                                            <input type="text" class="container-fluid  fs-5 me-4" placeholder='Genre'></input>
-                                        </div>
-
-
                                         <div class="d-flex m-4">
 
                                         </div>
